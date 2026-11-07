@@ -1,0 +1,87 @@
+:root {
+  --bg: #050818;
+  --panel: #0d1232;
+  --cyan: #00f5ff;
+  --ink: #b9cdf5;
+  --board-ratio: 1000 / 720;
+  --controls-h: 64px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage {
+  min-height: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right))
+           max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+}
+
+canvas {
+  display: block;
+  /* Fit inside the window while keeping the 1000x720 board shape */
+  width: min(100%, calc((100dvh - var(--controls-h) - 24px) * 1000 / 720), 1000px);
+  aspect-ratio: var(--board-ratio);
+  border-radius: 14px;
+  border: 1px solid rgba(0, 245, 255, 0.28);
+  box-shadow: 0 0 40px rgba(0, 120, 255, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  touch-action: none;           /* dragging moves the paddle instead of scrolling */
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: none;
+}
+
+canvas:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  height: var(--controls-h);
+  align-items: center;
+}
+
+.controls button {
+  font: 600 14px/1 inherit;
+  font-family: inherit;
+  min-width: 108px;
+  padding: 12px 18px;
+  color: var(--cyan);
+  background: var(--panel);
+  border: 1px solid rgba(0, 245, 255, 0.45);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.controls button:hover { background: #151c4a; }
+.controls button:active { transform: scale(0.96); }
+.controls button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.controls button[aria-pressed="false"] { color: #7f8bb5; border-color: rgba(127, 139, 181, 0.4); }
+
+@media (max-width: 520px) {
+  :root { --controls-h: 56px; }
+  .controls { gap: 8px; }
+  .controls button { min-width: 0; flex: 1; padding: 12px 12px; font-size: 13px; }
+  .stage { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controls button { transition: none; }
+}

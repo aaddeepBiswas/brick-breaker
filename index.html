@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#050818">
+  <meta name="description" content="Neon Brick Breaker: Cosmic Edition. A browser arcade game. Play on desktop or mobile.">
+  <title>Neon Brick Breaker: Cosmic Edition</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f142d'/%3E%3Crect x='4' y='5' width='24' height='7' rx='3' fill='%2300f5ff'/%3E%3Ccircle cx='16.5' cy='18.5' r='3.5' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <canvas id="game" width="1000" height="720" aria-label="Neon Brick Breaker game board" tabindex="0"></canvas>
+
+    <div class="controls" role="toolbar" aria-label="Game controls">
+      <button id="btnPlay" type="button">Launch</button>
+      <button id="btnRestart" type="button">Restart</button>
+      <button id="btnSound" type="button" aria-pressed="true">Sound on</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
